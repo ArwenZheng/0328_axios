@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //1,常见的error
+        //ReferenceError:引用的变量不存在
+        console.log(a); //ReferenceError:a is non defined
+
+        // TypeError:数据类型不正确的错误
+        let b = null;
+        console.log(b.xxx); //TypeError:cannot read property'b.xxx' of null
+
+        //RangeError:数值不再其所允许的范围内
+        function fn() { //无限的递归
+            fn();
+        } //RangeError:Maxium call stack size exceeded
+        // fn();
+
+        //SyntaxError:语法错误
+    </script>
+</body>
+
+</html>

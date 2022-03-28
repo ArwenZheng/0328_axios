@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //async函数的返回值是promise对象
+
+        async function fn1() {
+            // return 1;
+            // throw 2;
+            // return Promise.reject(3);
+            return Promise.resolve(4);
+        }
+        // const result = fn1();
+        // console.log(result);
+
+        function fn3() {
+            // return 3;
+            return Promise.resolve(5);
+        };
+        //async函数会立即执行结束返回一个pending状态的promise对象
+        async function fn2() {
+            //await后面的代码会放入then()的成功回调中执行的
+            const result = await fn3(); //,await只能用在async异步函数中
+            console.log(result)
+        }
+        // fn2();
+        // console.log('fn2之后')
+
+        //与async+await的效果是一样的
+        // function fn4() {
+        //     return fn3().then(
+        //         result => {
+        //             console.log(result)
+        //         }
+        //     )
+        // }
+        // fn4();
+        // console.log('fn4之后')
+        async function fn5() {
+            throw 6;
+        };
+        async function fn6() {
+            try {
+                const result = await fn5();
+                console.log('fn6 result =', result)
+            } catch (error) {
+                console.log('error', error)
+            }
+        }
+        fn6();
+    </script>
+</body>
+
+</html>

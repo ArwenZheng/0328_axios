@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <script>
+        const promise1 = new Promise(function(resolve, reject) {
+            //此时的状态是pending
+            setTimeout(function() {
+                //成功了
+                resolve('foo'); //promise对象的状态变为resolved/成功，同时制定成功的value
+            }, 1000)
+        });
+        console.log('new Promiss()之后')
+        promise1.then(function(value) { //异步执行的成功的回调函数
+            console.log(value);
+            //expected output:'foo'
+        })
+        console.log(promiss1)
+    </script> -->
+    <script>
+        //使用promise封装一步ajax请求
+        function myAsyncFunction(url) {
+            return new Promise((resolve, reject) => {
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', url);
+                xhr.onload = () => resolve(JSON.parse(xhr.responseText)); //成功的回调
+                xhr.onerror = () => reject(xhr.statusText); //失败的回调
+                xhr.send();
+            })
+        }
+        myAsyncFunction('http://api.apiopen.top/getJoke?page=1&count=2&type=video')
+            .then(
+                value => {
+                    console.log('成功了', value)
+                },
+                reason => {
+                    console.log('失败了', reason)
+                }
+            )
+    </script>
+</body>
+
+</html>

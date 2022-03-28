@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //1,常见的error
+        //ReferenceError:引用的变量不存在
+        //console.log(a); //ReferenceError:a is non defined
+
+        // TypeError:数据类型不正确的错误
+        //let b = null;
+        // console.log(b.xxx); //TypeError:cannot read property'b.xxx' of null
+
+        //RangeError:数值不再其所允许的范围内
+        //function fn() { //无限的递归
+        //   fn();
+        //} //RangeError:Maxium call stack size exceeded
+        // fn();
+
+        //SyntaxError:语法错误
+
+
+
+        //2,错误处理
+        //捕获错误error：
+        try {
+            const e = {}
+            e()
+        } catch (error) {
+            console.log(error.message)
+            console.log(error.stack)
+        }
+        console.log('----------')
+            //抛出错误error：
+        function doThing() { //当前时间如果为奇数能正常干活，否则不能
+            const time = Date.now()
+            if (time % 2 == 1) {
+                console.log('当前时间如果为奇数能正常干活' + time)
+            } else { //不能干活需要告诉调用者
+                throw new Error('前时间如果为欧数,不能' + time); //抛出错误
+
+            }
+        }
+        try {
+            doThing()
+        } catch (error) {
+            alert(error.message);
+        }
+    </script>
+</body>
+
+</html>
